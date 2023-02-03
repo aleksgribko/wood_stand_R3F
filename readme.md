@@ -1,7 +1,8 @@
-# Three.js Journey
+# Wood stand R3F project
+
+DEMO: https://illustrious-chaja-003b95.netlify.app/
 
 ## Setup
-Download [Node.js](https://nodejs.org/en/download/).
 Run this followed commands:
 
 ``` bash
