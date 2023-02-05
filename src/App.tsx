@@ -12,10 +12,11 @@ import "./App.css";
  */
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <StrictMode>
-    <Canvas>
+    <Canvas camera={{ position: [0, 2, 4] }}>
       <ambientLight intensity={0.1} color={"#634217"} />
+      <directionalLight />
       <Furniture />
-      <OrbitControls />
+      <OrbitControls autoRotate={true} />
     </Canvas>
   </StrictMode>
 );

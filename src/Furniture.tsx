@@ -7,15 +7,24 @@ const Furniture = () => {
 
   const { nodes, materials } = useGLTF("/furniture_2.gltf");
 
-  console.log(nodes);
+  /**
+   * Imports
+   */
 
-  const name = (type: string) => `/wood2/Wood034_2K_${type}.jpg`;
+  const nameWood = (type: string) => `/wood2/Wood034_2K_${type}.jpg`;
 
-  const [colorMap, displacementMap, normalMap, roughnessMap] = useTexture([
-    name("Color"),
-    name("Displacement"),
-    name("NormalDX"),
-    name("Roughness"),
+  const [woodColorMap, woodNormalMap, woodRoughnessMap] = useTexture([
+    nameWood("Color"),
+    nameWood("NormalDX"),
+    nameWood("Roughness"),
+  ]);
+
+  const nameMetal = (type: string) =>
+    `/metal/MetalSpottyDiscoloration001_${type}_2K_METALNESS.jpg`;
+
+  const [metalNormalMap, metalRoughnessMap] = useTexture([
+    nameMetal("NRM"),
+    nameMetal("ROUGHNESS"),
   ]);
 
   /**
@@ -24,18 +33,20 @@ const Furniture = () => {
 
   const woodMaterial = materials[""];
 
-  woodMaterial.map = colorMap;
+  woodMaterial.map = woodColorMap;
   // woodMaterial.displacementMap = displacementMap;
-  woodMaterial.normalMap = normalMap;
-  woodMaterial.roughnessMap = roughnessMap;
+  woodMaterial.normalMap = woodNormalMap;
+  woodMaterial.roughnessMap = woodRoughnessMap;
   woodMaterial.displacementScale = 0.005;
-  woodMaterial.color = new THREE.Color("#F4F4F4");
+  woodMaterial.color = new THREE.Color("#e3cfb1");
 
   const metalMaterial = new THREE.MeshStandardMaterial();
 
-  metalMaterial.metalness = 0.8;
-  metalMaterial.roughness = 0.3;
-  metalMaterial.color = new THREE.Color("#926F34");
+  metalMaterial.metalness = 0.7;
+  metalMaterial.roughness = 0.6;
+  metalMaterial.roughnessMap = metalRoughnessMap;
+  metalMaterial.normalMap = metalNormalMap;
+  metalMaterial.color = new THREE.Color("#705e3f");
 
   return (
     <Suspense fallback={null}>
